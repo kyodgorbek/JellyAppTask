@@ -1,0 +1,6 @@
+package com.yodgorbek.jellyapp.util
+
+
+const val SUPABASE_URL = "https://ovgjxlcoryidxyzxwyzk.supabase.co"
+const val SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im92Z2p4bGNvcnlpZHh5enh3eXprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI1MTk3ODMsImV4cCI6MjA2ODA5NTc4M30.AJe6wyuCKji86g7_8VGdqL0FbXEEPwIBIyifWu04rKY"
+const val BUCKET_NAME = "videos"

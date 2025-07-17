@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "8747387604",
+    "project_id": "jellyapp-4f409",
+    "storage_bucket": "jellyapp-4f409.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:8747387604:android:864cba6020270d59c84941",
+        "android_client_info": {
+          "package_name": "com.yodgorbek.jellyapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoUzIazXCxB0OWWN0Gz7Nbl78LJCG82rM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
