@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("com.google.gms.google-services")
+    alias(libs.plugins.google.firebase.crashlytics)
 }
 
 android {
@@ -70,6 +71,7 @@ dependencies {
     implementation("com.google.firebase:firebase-storage-ktx:21.0.0")
     implementation("com.google.firebase:firebase-firestore-ktx:25.0.0")
     implementation(libs.firebase.auth.ktx)
+    implementation(libs.firebase.crashlytics)
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
     implementation(platform("io.insert-koin:koin-bom:4.1.0"))
     implementation("io.insert-koin:koin-android")
@@ -90,6 +92,7 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.4")
 
     implementation("androidx.navigation:navigation-compose:2.7.7")
+    implementation(libs.firebase.crashlytics)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

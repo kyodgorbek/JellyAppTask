@@ -30,14 +30,12 @@ fun GalleryScreen(
     val videos by viewModel.videos.collectAsState()
 
     LazyVerticalGrid(columns = GridCells.Fixed(2)) {
-        item {
+        items(videos) { video ->
             VideoThumbnail(
-                video = Video(
-                    url = "https://ovgjxlcoryidxyzxwyzk.supabase.co/storage/v1/object/public/videos/video_1752692670057.mp4"
-                ),
+                video = video,
                 onClick = {
                     val encodedUrl = URLEncoder.encode(
-                        "https://ovgjxlcoryidxyzxwyzk.supabase.co/storage/v1/object/public/videos/video_1752692670057.mp4",
+                        video.url,
                         StandardCharsets.UTF_8.toString()
                     )
                     navController.navigate("player?videoUrl=$encodedUrl")
@@ -46,6 +44,7 @@ fun GalleryScreen(
         }
     }
 }
+
 
 @Composable
 fun VideoThumbnail(video: Video, onClick: () -> Unit) {

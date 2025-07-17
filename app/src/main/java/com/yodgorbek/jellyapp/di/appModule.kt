@@ -77,5 +77,5 @@ val appModule = module {
     // Gallery
     single<GalleryRepository> { GalleryRepositoryImpl(get()) }
     single { GetVideosUseCase(get()) }
-    viewModel { GalleryViewModel(get()) }
+    viewModel { GalleryViewModel(get(), get()) }
 }
