@@ -2,26 +2,27 @@ package com.yodgorbek.jellyapp.presentation.gallery
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.yodgorbek.jellyapp.data.repository.GalleryRepository
+import com.yodgorbek.jellyapp.data.repository.GalleryRepositoryImpl
 import com.yodgorbek.jellyapp.domain.model.Video
-import com.yodgorbek.jellyapp.domain.usacase.GetLocalVideosUseCase
-import com.yodgorbek.jellyapp.domain.usacase.GetVideosUseCase
+import io.ktor.client.HttpClient
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
+import org.koin.core.component.KoinComponent
 
 class GalleryViewModel(
-    private val getVideosUseCase: GetVideosUseCase,
-    private val getLocalVideosUseCase: GetLocalVideosUseCase
-) : ViewModel() {
+    private val repository: GalleryRepository = GalleryRepositoryImpl(HttpClient())
+) : ViewModel(), KoinComponent {
 
-    private val _videos: StateFlow<List<Video>> = combine(
-        getVideosUseCase(),
-        getLocalVideosUseCase()
-    ) { remoteVideos, localVideos ->
-        (localVideos + remoteVideos).distinctBy { it.url } // Remove duplicates
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
-
+    private val _videos = MutableStateFlow<List<Video>>(emptyList())
     val videos: StateFlow<List<Video>> = _videos
+
+    fun loadVideos() {
+        viewModelScope.launch {
+            repository.getVideos().collect { videoList ->
+                _videos.value = videoList
+            }
+        }
+    }
 }

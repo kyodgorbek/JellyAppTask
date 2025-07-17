@@ -18,8 +18,8 @@ import com.yodgorbek.jellyapp.presentation.feed.FeedScreen
 import com.yodgorbek.jellyapp.presentation.gallery.GalleryScreen
 import com.yodgorbek.jellyapp.presentation.detail.DetailScreen
 import androidx.compose.runtime.getValue
-import androidx.navigation.navArgument
 import com.yodgorbek.jellyapp.presentation.player.VideoPlayerScreen
+import java.net.URLDecoder
 import java.nio.charset.StandardCharsets
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -56,16 +56,12 @@ fun NavGraph(navController: NavHostController = rememberNavController()) {
             composable("feed") { FeedScreen(navController = navController) }
             composable("camera") { CameraScreen(navController = navController) }
             composable("gallery") { GalleryScreen(navController = navController) }
-            composable(
-                route = "player?videoUrl={videoUrl}",
-                arguments = listOf(navArgument("videoUrl") { defaultValue = "" })
-            ) { backStackEntry ->
-                val videoUrl = backStackEntry.arguments?.getString("videoUrl")?.let {
-                    java.net.URLDecoder.decode(it, StandardCharsets.UTF_8.toString())
-                } ?: ""
+            composable("player/{videoUrl}") { backStackEntry ->
+                //val videoUrl = backStackEntry.arguments?.getString("videoUrl") ?: ""
+                val encodedUrl = backStackEntry.arguments?.getString("videoUrl") ?: ""
+                val videoUrl = URLDecoder.decode(encodedUrl, StandardCharsets.UTF_8.toString())
                 VideoPlayerScreen(navController = navController, videoUrl = videoUrl)
             }
-
             composable("detail/{videoId}") { backStackEntry ->
                 val videoId = backStackEntry.arguments?.getString("videoId") ?: ""
                 DetailScreen(videoId = videoId)

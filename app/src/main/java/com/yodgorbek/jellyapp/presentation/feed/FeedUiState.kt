@@ -1,4 +1,3 @@
-package com.yodgorbek.jellyapp.presentation.feed
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

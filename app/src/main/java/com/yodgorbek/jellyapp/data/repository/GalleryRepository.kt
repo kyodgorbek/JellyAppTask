@@ -12,6 +12,7 @@ import io.ktor.client.request.parameter
 import io.ktor.http.HttpHeaders
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.datetime.Instant
 
 interface GalleryRepository {
     fun getVideos(): Flow<List<Video>>
@@ -32,10 +33,25 @@ class GalleryRepositoryImpl(
                 parameter("order", "created_at.desc")
             }.body()
 
-            val mapped = response.map {
+            /*val mapped = response.map {
                 Video(
                     url = it.url,
                     createdAt = it.createdAt?.toEpochMilliseconds() ?: System.currentTimeMillis()
+                )
+            }*/
+
+            val mapped = response.map { video ->
+                val timestamp = try {
+                    video.createdAt?.let {
+                        Instant.parse(it.toString()).toEpochMilliseconds()
+                    } ?: System.currentTimeMillis()
+                } catch (e: Exception) {
+                    System.currentTimeMillis()
+                }
+
+                Video(
+                    url = video.url,
+                    createdAt = timestamp
                 )
             }
 

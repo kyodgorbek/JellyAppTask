@@ -43,3 +43,4 @@ fun NavGraphBuilder.detailScreenRoute() {
         DetailScreen(videoId = videoId)
     }
 }
+

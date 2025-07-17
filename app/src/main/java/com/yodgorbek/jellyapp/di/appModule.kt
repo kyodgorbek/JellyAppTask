@@ -1,6 +1,7 @@
 package com.yodgorbek.jellyapp.di
 
 
+import FeedViewModel
 import com.google.gson.GsonBuilder
 import com.yodgorbek.jellyapp.BuildConfig
 import com.yodgorbek.jellyapp.data.remote.FeedApi
@@ -14,7 +15,6 @@ import com.yodgorbek.jellyapp.domain.usacase.FetchFeedUseCase
 import com.yodgorbek.jellyapp.domain.usacase.GetVideosUseCase
 import com.yodgorbek.jellyapp.domain.usacase.RecordVideoUseCase
 import com.yodgorbek.jellyapp.presentation.camera.CameraViewModel
-import com.yodgorbek.jellyapp.presentation.feed.FeedViewModel
 import com.yodgorbek.jellyapp.presentation.gallery.GalleryViewModel
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
@@ -77,5 +77,5 @@ val appModule = module {
     // Gallery
     single<GalleryRepository> { GalleryRepositoryImpl(get()) }
     single { GetVideosUseCase(get()) }
-    viewModel { GalleryViewModel(get(), get()) }
+    viewModel { GalleryViewModel(get()) }
 }

@@ -9,7 +9,6 @@ import androidx.navigation.compose.rememberNavController
 import com.yodgorbek.jellyapp.presentation.navigation.NavGraph
 import com.yodgorbek.jellyapp.ui.theme.JellyAppTaskTheme
 
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

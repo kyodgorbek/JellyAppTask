@@ -3,7 +3,10 @@ package com.yodgorbek.jellyapp.util
 import android.Manifest
 import android.content.Context
 import android.graphics.SurfaceTexture
-import android.hardware.camera2.*
+import android.hardware.camera2.CameraCaptureSession
+import android.hardware.camera2.CameraCharacteristics
+import android.hardware.camera2.CameraDevice
+import android.hardware.camera2.CameraManager
 import android.media.MediaRecorder
 import android.util.Log
 import android.view.Surface

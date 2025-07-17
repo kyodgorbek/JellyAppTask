@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("com.google.gms.google-services")
     alias(libs.plugins.google.firebase.crashlytics)
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
@@ -20,6 +21,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
         buildConfigField("String", "YOUTUBE_API_KEY", "\"${youtubeApiKey}\"")
     }
 
@@ -65,6 +67,9 @@ dependencies {
     implementation("androidx.camera:camera-camera2:1.4.2")
     implementation("com.google.android.exoplayer:exoplayer:2.19.1")
     implementation("io.coil-kt:coil-compose:2.6.0")
+    implementation("io.coil-kt:coil:2.5.0")
+    implementation("io.coil-kt:coil-video:2.5.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation(libs.logging.interceptor)
@@ -92,7 +97,9 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.4")
 
     implementation("androidx.navigation:navigation-compose:2.7.7")
-    implementation(libs.firebase.crashlytics)
+
+    implementation("com.github.skydoves:landscapist-glide:2.5.1")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

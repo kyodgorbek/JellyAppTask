@@ -1,5 +1,6 @@
 package com.yodgorbek.jellyapp.presentation.feed
 
+import FeedViewModel
 import org.koin.androidx.compose.koinViewModel
 
 import androidx.compose.foundation.clickable
